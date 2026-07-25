@@ -9,7 +9,7 @@ export default function AdminLogin() {
 
   useEffect(() => {
     if (localStorage.getItem(AUTH_TOKEN_KEY)) {
-      window.location.href = '/admin/dashboard';
+      window.location.assign('/admin/dashboard');
     }
   }, []);
 
@@ -37,7 +37,7 @@ export default function AdminLogin() {
 
       localStorage.setItem(AUTH_TOKEN_KEY, payload.token);
       localStorage.setItem('olaosebikan_admin_user', JSON.stringify(payload.user));
-      window.location.href = '/admin/dashboard';
+      window.location.assign('/admin/dashboard');
     } catch (loginError) {
       setError(loginError.message || 'Unable to login. Please try again.');
     } finally {
@@ -71,7 +71,7 @@ export default function AdminLogin() {
             <button
               type="button"
               onClick={() => {
-                window.location.href = '/';
+                window.location.assign('/');
               }}
               className="mb-10 text-sm font-extrabold text-orange-600 hover:text-orange-700"
             >

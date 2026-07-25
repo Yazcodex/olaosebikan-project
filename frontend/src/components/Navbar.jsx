@@ -27,7 +27,7 @@ export default function Navbar({ cartCount = 0 }) {
   const goToSection = (id) => {
     if (window.location.pathname !== '/') {
       setIsOpen(false);
-      window.location.href = `/#${id}`;
+      window.location.assign(`/#${id}`);
       return;
     }
 
@@ -37,7 +37,7 @@ export default function Navbar({ cartCount = 0 }) {
   };
 
   const goToPage = (path) => {
-    window.location.href = path;
+    window.location.assign(path);
     setIsOpen(false);
   };
 

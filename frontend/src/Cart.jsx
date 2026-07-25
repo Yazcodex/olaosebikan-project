@@ -56,7 +56,7 @@ export default function Cart({ cartItems, cartCount, updateCartQuantity, removeF
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.message || 'Unable to save order.');
 
-      window.location.href = buildWhatsAppOrderUrl();
+      window.location.assign(buildWhatsAppOrderUrl());
     } catch (error) {
       setOrderError(`${error.message} Please contact us on WhatsApp to complete your order.`);
     } finally {
@@ -65,7 +65,7 @@ export default function Cart({ cartItems, cartCount, updateCartQuantity, removeF
   };
 
   const goToPage = (path) => {
-    window.location.href = path;
+    window.location.assign(path);
   };
 
   return (

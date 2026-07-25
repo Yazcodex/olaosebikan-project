@@ -10,7 +10,7 @@ export default function AdminDashboard() {
     const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
     if (!token) {
-      window.location.href = '/admin/login';
+      window.location.assign('/admin/login');
       return;
     }
 
@@ -31,7 +31,7 @@ export default function AdminDashboard() {
   const logout = () => {
     localStorage.removeItem(AUTH_TOKEN_KEY);
     localStorage.removeItem('olaosebikan_admin_user');
-    window.location.href = '/admin/login';
+    window.location.assign('/admin/login');
   };
 
   if (error) {
@@ -40,7 +40,11 @@ export default function AdminDashboard() {
         <div className="max-w-md rounded-lg bg-white p-8 text-center shadow-lg">
           <h1 className="text-2xl font-black text-gray-950">Access expired</h1>
           <p className="mt-3 font-semibold text-gray-500">{error}</p>
-          <button onClick={logout} className="mt-6 rounded-lg bg-orange-500 px-5 py-3 font-black text-white">
+          <button
+            type="button"
+            onClick={logout}
+            className="mt-6 rounded-lg bg-orange-500 px-5 py-3 font-black text-white"
+          >
             Login again
           </button>
         </div>
@@ -75,7 +79,7 @@ export default function AdminDashboard() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <StatCard icon={<ShoppingBag />} label="Total Orders" value={stats.totalOrders} />
               <StatCard icon={<Package />} label="Orders Today" value={stats.ordersToday} />
-              <StatCard icon={<Wallet />} label="Total Revenue" value={`₦${stats.totalRevenue.toLocaleString()}`} />
+              <StatCard icon={<Wallet />} label="Total Revenue" value={`NGN ${stats.totalRevenue.toLocaleString()}`} />
               <StatCard icon={<Users />} label="Total Customers" value={stats.totalCustomers} />
             </div>
 
@@ -89,15 +93,15 @@ export default function AdminDashboard() {
                     stats.recentOrders.map((order) => (
                       <div key={order._id} className="rounded-lg border border-gray-100 p-4">
                         <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <p className="font-black">{order.customerName}</p>
-                          <p className="text-sm font-semibold text-gray-500">{order.phoneNumber}</p>
-                          <p className="mt-1 text-sm font-semibold text-gray-500">{order.deliveryAddress}</p>
-                        </div>
-                        <div className="text-right">
-                          <p className="font-black">₦{order.totalPrice.toLocaleString()}</p>
-                          <p className="text-sm font-bold text-orange-600">{order.status}</p>
-                        </div>
+                          <div>
+                            <p className="font-black">{order.customerName}</p>
+                            <p className="text-sm font-semibold text-gray-500">{order.phoneNumber}</p>
+                            <p className="mt-1 text-sm font-semibold text-gray-500">{order.deliveryAddress}</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="font-black">NGN {order.totalPrice.toLocaleString()}</p>
+                            <p className="text-sm font-bold text-orange-600">{order.status}</p>
+                          </div>
                         </div>
                         <div className="mt-3 rounded-lg bg-orange-50 px-3 py-2">
                           <p className="text-xs font-black uppercase tracking-widest text-orange-600">Order</p>
